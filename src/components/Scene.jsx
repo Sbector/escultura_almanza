@@ -81,7 +81,8 @@ const Scene = () => {
      */
     const gltfLoader = new GLTFLoader()
     let pieza
-    gltfLoader.load('./models/pieza/SCALEDcontext_ModeloOriginal(plano).gltf',
+    gltfLoader.load(
+        './models/scaledRectified.glb',
         (gltf) => {
             pieza = gltf.scene
             scene.add(pieza)
@@ -97,8 +98,8 @@ const Scene = () => {
               size: 1
             }
             gui.add(piezaAux,'size', {
-              'normal': 1,
-              'nuevo': 0.5
+              'Original': 1,
+              'Actualizado': 0.671642
             })
                .name('versión')
                .onChange(()=> {
