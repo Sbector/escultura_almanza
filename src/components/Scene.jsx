@@ -92,6 +92,22 @@ const Scene = () => {
                .name('Ypos')
             gui.add(pieza.rotation,'y', -Math.PI, Math.PI, Math.PI * 0.001)
                .name('Rotación')
+
+            const piezaAux = {
+              size: 1
+            }
+            gui.add(piezaAux,'size', {
+              'normal': 1,
+              'nuevo': 0.5
+            })
+               .name('versión')
+               .onChange(()=> {
+                 pieza.scale.set(
+                   piezaAux.size,
+                   piezaAux.size,
+                   piezaAux.size
+                 )
+               })
         },
         () => {
             console.log('loading...')
