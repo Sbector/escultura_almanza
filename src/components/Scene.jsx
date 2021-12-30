@@ -3,7 +3,9 @@ import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 
+import * as dat from 'dat.gui'
 import Stats from "three/examples/jsm/libs/stats.module"
+
 
 const Scene = () => {
   const mountRef = useRef(null)
@@ -11,6 +13,11 @@ const Scene = () => {
   useEffect(() => {
     const currentRef = mountRef.current
     const { clientWidth: width, clientHeight: height } = currentRef
+
+    /**
+     * Global variables
+     */
+    const gui = new dat.GUI()
 
     /**
      * Carga de texturas y envMap
@@ -39,7 +46,7 @@ const Scene = () => {
     const scene = new THREE.Scene()
     scene.background = new THREE.Color(0xeafffa)
     const camera = new THREE.PerspectiveCamera(55, width / height, 0.01, 1000)
-    camera.position.set(20,1.8,-7)
+    camera.position.set(20,1.6,-7)
     scene.add(camera)
 
     const renderer = new THREE.WebGLRenderer({antialias:true})
@@ -55,14 +62,36 @@ const Scene = () => {
     controls.target.set(0,4,0)
     controls.enablePan = false
     controls.minDistance = 15
-    controls.maxDistance = 60
+    controls.maxDistance = 56
+    
+    const centerPosition = controls.target.clone();
+    centerPosition.y = 0;
+    const groundPosition = camera.position.clone();
+    groundPosition.y = 0;
+    const d = (centerPosition.distanceTo(groundPosition));
+
+    const origin = new THREE.Vector2(controls.target.y,0);
+    const remote = new THREE.Vector2(2.5,d); // replace 0 with raycasted ground altitude
+    const angleRadians = Math.atan2(remote.y - origin.y, remote.x - origin.x);
+    controls.maxPolarAngle = angleRadians;
+
+
     /**
      * GLTF model
      */
     const gltfLoader = new GLTFLoader()
+    let pieza
     gltfLoader.load('./models/pieza/SCALEDcontext_ModeloOriginal(plano).gltf',
         (gltf) => {
-            scene.add(gltf.scene)
+            pieza = gltf.scene
+            scene.add(pieza)
+            // dat.gui controls
+            gui.add(pieza.position,'x', -20, 20, 0.001)
+               .name('Xpos')
+            gui.add(pieza.position,'z', -10, 10, 0.001)
+               .name('Ypos')
+            gui.add(pieza.rotation,'y', -Math.PI, Math.PI, Math.PI * 0.001)
+               .name('Rotación')
         },
         () => {
             console.log('loading...')
@@ -71,6 +100,8 @@ const Scene = () => {
             console.log('error')
         }
     )
+    
+    
 
     /**
      * Contexto y referencias
@@ -86,6 +117,11 @@ const Scene = () => {
     context.position.y = -0.01
     context.position.z = 10
     scene.add(context)
+
+    // referencia
+    const ref = new THREE.Mesh(
+      new THREE.CylinderGeometry()
+    )
 
     
     /**
@@ -140,6 +176,7 @@ const Scene = () => {
     return () => {
       currentRef.removeChild(renderer.domElement)
       document.body.removeChild(stats.dom)
+      gui.destroy()
       window.removeEventListener("resize", resize)
     }
   }, [])
