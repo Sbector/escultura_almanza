@@ -22,12 +22,40 @@ const Scene = () => {
     /**
      * Carga de texturas y envMap
      */
+
+    const loadingManager = new THREE.LoadingManager()
+
+    loadingManager.onStart = ()=>
+     {
+         console.log('onStart')
+     }
+     
+    loadingManager.onLoaded = ()=>
+     {
+         console.log('Loaded')
+     }
+     
+    loadingManager.onProgress = ()=>
+     {
+         console.log('onProgress')
+     }
+     
+    loadingManager.onError = ()=>
+     {
+         console.log('Error')
+     }
+     
+    const textureLoader = new THREE.TextureLoader(loadingManager)
+     
+     
     //Textura de contexto
-    const texture = new THREE.TextureLoader().load(
-        './textures/context(pow2).jpg'
-    )
-    // texture.minFilter = THREE.NearestFilter
-    texture.magFilter = THREE.NearestFilter;
+    const contextTexture = textureLoader.load('./textures/context(pow2).jpg')
+    //Textura de referencia humana
+    const refTexture = textureLoader.load('./textures/human-silhouette-walking-4.png')
+    
+
+    // contextTexture.minFilter = THREE.NearestFilter
+    contextTexture.magFilter = THREE.NearestFilter;
 
     //EnvMap
     const environmentMap = new THREE.CubeTextureLoader()
@@ -64,6 +92,7 @@ const Scene = () => {
     controls.minDistance = 15
     controls.maxDistance = 56
     
+    // Offset angle and orbit ground limit
     const centerPosition = controls.target.clone();
     centerPosition.y = 0;
     const groundPosition = camera.position.clone();
@@ -87,11 +116,11 @@ const Scene = () => {
             pieza = gltf.scene
             scene.add(pieza)
             // dat.gui controls
-            gui.add(pieza.position,'x', -20, 20, 0.001)
+            gui.add(pieza.position,'x', -20, 20, 0.0001)
                .name('Xpos')
-            gui.add(pieza.position,'z', -10, 10, 0.001)
+            gui.add(pieza.position,'z', -10, 10, 0.0001)
                .name('Ypos')
-            gui.add(pieza.rotation,'y', -Math.PI, Math.PI, Math.PI * 0.001)
+            gui.add(pieza.rotation,'y', -Math.PI, Math.PI, Math.PI * 0.0001)
                .name('Rotación')
 
             const piezaAux = {
@@ -126,7 +155,7 @@ const Scene = () => {
     const context = new THREE.Mesh(
         new THREE.PlaneGeometry(191,115),
         new THREE.MeshBasicMaterial({
-            map: texture
+            map: contextTexture
         })
     )
     context.rotation.x = -(Math.PI*0.5)
@@ -136,9 +165,21 @@ const Scene = () => {
     scene.add(context)
 
     // referencia
-    const ref = new THREE.Mesh(
-      new THREE.CylinderGeometry()
+    const geometry = new THREE.PlaneGeometry(.89,1.8)
+    const ref = new THREE.Mesh(geometry,
+      new THREE.MeshStandardMaterial({
+        map: refTexture,
+        transparent: true,
+        metalness: 1,
+        roughness: 0
+      })
     )
+    ref.position.set(2.8,1.8/2,-5.1)
+    scene.add(ref)
+    gui.add(ref.position,'x',-15,15,0.1)
+       .name('ReferenciaPosX')
+    gui.add(ref.position,'z',-15,15,0.1)
+       .name('ReferenciaPosY')
 
     
     /**
@@ -170,6 +211,10 @@ const Scene = () => {
     const animate = () => {
       stats.update()
       const elapsedTime = clock.getElapsedTime()/5
+      ref.rotation.y = Math.atan2(
+        (camera.position.x - ref.position.x),
+        (camera.position.z - ref.position.z)
+        )
       //console.log(elapsedTime);
       controls.update()
       renderer.render(scene, camera)
