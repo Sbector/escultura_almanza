@@ -49,23 +49,26 @@ const Scene = () => {
      
      
     //Textura de contexto
-    const contextTexture = textureLoader.load('./textures/context(pow2).jpg')
+    // const contextTexture = textureLoader.load('./textures/updatedContext.jpg')
+    
+    //Textura de contexto lejano
+    const contextTextureFar = textureLoader.load('./textures/updatedContextFar.jpg')
     //Textura de referencia humana
     const refTexture = textureLoader.load('./textures/human-silhouette-walking-4.png')
     
 
-    // contextTexture.minFilter = THREE.NearestFilter
-    contextTexture.magFilter = THREE.NearestFilter;
+    //  contextTextureFar.minFilter = THREE.NearestFilter
+    // contextTextureFar.magFilter = THREE.NearestFilter;
 
     //EnvMap
     const environmentMap = new THREE.CubeTextureLoader()
     const envMap = environmentMap.load([
-        './envmap/px.jpg',
-        './envmap/nx.jpg',
-        './envmap/py.jpg',
-        './envmap/ny.jpg',
-        './envmap/pz.jpg',
-        './envmap/nz.jpg'
+        './envmap/colomos/px.png',
+        './envmap/colomos/nx.png',
+        './envmap/colomos/py.png',
+        './envmap/colomos/ny.png',
+        './envmap/colomos/pz.png',
+        './envmap/colomos/nz.png'
     ])
 
     /**
@@ -90,7 +93,7 @@ const Scene = () => {
     controls.target.set(0,4,0)
     controls.enablePan = false
     controls.minDistance = 15
-    controls.maxDistance = 56
+    controls.maxDistance = 30
     
     // Offset angle and orbit ground limit
     const centerPosition = controls.target.clone();
@@ -103,6 +106,7 @@ const Scene = () => {
     const remote = new THREE.Vector2(2.5,d); // replace 0 with raycasted ground altitude
     const angleRadians = Math.atan2(remote.y - origin.y, remote.x - origin.x);
     controls.maxPolarAngle = angleRadians;
+    controls.minPolarAngle = Math.PI/4
 
 
     /**
@@ -111,7 +115,7 @@ const Scene = () => {
     const gltfLoader = new GLTFLoader()
     let pieza
     gltfLoader.load(
-        './models/scaledRectified.glb',
+        './models/modelo_original.glb',
         (gltf) => {
             pieza = gltf.scene
             scene.add(pieza)
@@ -152,29 +156,43 @@ const Scene = () => {
     /**
      * Contexto y referencias
      */
-    const context = new THREE.Mesh(
-        new THREE.PlaneGeometry(191,115),
+    // const context = new THREE.Mesh(
+    //     new THREE.PlaneGeometry(157,96.1),
+    //     new THREE.MeshBasicMaterial({
+    //         map: contextTexture
+    //     })
+    // )
+    // context.rotation.set(-(Math.PI*0.5),0,-(Math.PI * 0.1))
+    // // context.rotation.x = -(Math.PI*0.5)
+    // // context.rotation.z = -(Math.PI * 0.1)
+    // context.position.set(-0.7,-0.001,2.5)
+    // // context.position.y = -0.001
+    // // context.position.z = 3.13
+    // scene.add(context)
+    
+    //Contexto lejano
+    const contextFar = new THREE.Mesh(
+        new THREE.PlaneGeometry(571,345),
         new THREE.MeshBasicMaterial({
-            map: contextTexture
+            map: contextTextureFar
         })
     )
-    context.rotation.x = -(Math.PI*0.5)
-    context.rotation.z = -(Math.PI * 0.1)
-    context.position.y = -0.01
-    context.position.z = 10
-    scene.add(context)
+    contextFar.rotation.set(-(Math.PI*0.5),0,-(Math.PI * 0.1))
+    contextFar.position.set(-0.7,-0.02,2.5)
+    scene.add(contextFar)
+
 
     // referencia
-    const geometry = new THREE.PlaneGeometry(.89,1.8)
-    const ref = new THREE.Mesh(geometry,
+    const planeRef = new THREE.PlaneGeometry(.89,1.8)
+    const ref = new THREE.Mesh(planeRef,
       new THREE.MeshStandardMaterial({
         map: refTexture,
         transparent: true,
-        metalness: 1,
-        roughness: 0
+        metalness: .6,
+        roughness: .1
       })
     )
-    ref.position.set(2.8,1.8/2,-5.1)
+    ref.position.set(10.7,1.8/2,-5.1)
     scene.add(ref)
     gui.add(ref.position,'x',-15,15,0.1)
        .name('ReferenciaPosX')
@@ -186,6 +204,7 @@ const Scene = () => {
      * Iluminación
      */
     scene.environment = envMap
+    scene.background = envMap
 
     const light = new THREE.PointLight(0xffffff,4,80)
     light.position.set(-20,50,0)
