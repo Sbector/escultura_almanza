@@ -55,6 +55,8 @@ const Scene = () => {
     const contextTextureFar = textureLoader.load('./textures/updatedContextFar.jpg')
     //Textura de referencia humana
     const refTexture = textureLoader.load('./textures/human-silhouette-walking-4.png')
+    //Textura de envMap
+    const sphereEnv = textureLoader.load('./textures/envMap.jpg')
     
 
     //  contextTextureFar.minFilter = THREE.NearestFilter
@@ -199,12 +201,21 @@ const Scene = () => {
     gui.add(ref.position,'z',-15,15,0.1)
        .name('ReferenciaPosY')
 
+    /**
+     * Fake EnvMap
+     */
+    const sphereGeometry = new THREE.SphereGeometry (180,16,8)
+    const sphereMaterial = new THREE.MeshBasicMaterial({
+      map: sphereEnv,
+      side: THREE.BackSide
+    })
+    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
+    scene.add(sphere)
     
     /**
      * Iluminación
      */
     scene.environment = envMap
-    scene.background = envMap
 
     const light = new THREE.PointLight(0xffffff,4,80)
     light.position.set(-20,50,0)
