@@ -217,11 +217,11 @@ const Scene = () => {
      */
     scene.environment = envMap
 
-    const light = new THREE.PointLight(0xffffff,4,80)
+    const light = new THREE.DirectionalLight(0xffffff,1.2)
     light.position.set(-20,50,0)
     scene.add(light)
 
-    const ambient = new THREE.AmbientLight(0xffffff,1)
+    const ambient = new THREE.AmbientLight(0xffffff,0.4)
     scene.add(ambient)
 
     /**
