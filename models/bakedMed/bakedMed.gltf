@@ -12,9 +12,9 @@
                         "idx" : 0,
                         "val" : -3.1020621804600523e-07,
                         "color" : [
-                            0.4656052887439728,
-                            0.4656052887439728,
-                            0.4656052887439728,
+                            0,
+                            0,
+                            0,
                             1
                         ]
                     },
@@ -28,7 +28,15 @@
                             1
                         ]
                     }
-                ]
+                ],
+                "glTF2ExportSettings" : {
+                    "export_animations" : 0,
+                    "export_extras" : 1,
+                    "export_format" : "GLTF_SEPARATE",
+                    "export_morph" : 0,
+                    "export_skins" : 0,
+                    "use_selection" : 1
+                }
             },
             "name" : "Scene",
             "nodes" : [
@@ -45,10 +53,9 @@
     "materials" : [
         {
             "doubleSided" : true,
-            "name" : "Rugoso_baked",
+            "name" : "Rugosomed_baked",
             "normalTexture" : {
-                "index" : 0,
-                "scale" : 1.2000000476837158
+                "index" : 0
             },
             "pbrMetallicRoughness" : {
                 "baseColorTexture" : {
@@ -60,7 +67,7 @@
         },
         {
             "doubleSided" : true,
-            "name" : "Liso_baked",
+            "name" : "Lisomed_baked",
             "normalTexture" : {
                 "index" : 2
             },
@@ -119,13 +126,13 @@
     "images" : [
         {
             "mimeType" : "image/png",
-            "name" : "normalSlow",
-            "uri" : "normalSlow.png"
+            "name" : "normalMed",
+            "uri" : "normalMed.png"
         },
         {
             "mimeType" : "image/png",
-            "name" : "difusseSlow",
-            "uri" : "difusseSlow.png"
+            "name" : "difusseMed",
+            "uri" : "difusseMed.png"
         }
     ],
     "accessors" : [
@@ -249,7 +256,7 @@
     "buffers" : [
         {
             "byteLength" : 405688,
-            "uri" : "bakedLow.bin"
+            "uri" : "bakedMed.bin"
         }
     ]
 }
