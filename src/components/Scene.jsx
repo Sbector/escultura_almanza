@@ -117,7 +117,7 @@ const Scene = () => {
     const gltfLoader = new GLTFLoader()
     let pieza
     gltfLoader.load(
-        './models/gris/gris.gltf',
+        './models/bakedLow/bakedLow.gltf',
         (gltf) => {
             pieza = gltf.scene
             scene.add(pieza)

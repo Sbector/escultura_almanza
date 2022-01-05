@@ -1,0 +1,255 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.6.16",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "extras" : {
+                "uiListCollec" : [
+                    {
+                        "idx" : 0,
+                        "val" : -3.1020621804600523e-07,
+                        "color" : [
+                            0.4656052887439728,
+                            0.4656052887439728,
+                            0.4656052887439728,
+                            1
+                        ]
+                    },
+                    {
+                        "idx" : 1,
+                        "val" : 13.345688819885254,
+                        "color" : [
+                            1,
+                            1,
+                            1,
+                            1
+                        ]
+                    }
+                ]
+            },
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Texturizado"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "Rugoso_baked",
+            "normalTexture" : {
+                "index" : 0,
+                "scale" : 1.2000000476837158
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 1
+                },
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.8636363744735718
+            }
+        },
+        {
+            "doubleSided" : true,
+            "name" : "Liso_baked",
+            "normalTexture" : {
+                "index" : 2
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 3
+                },
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.8636363744735718
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Cylinder.009",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                },
+                {
+                    "attributes" : {
+                        "POSITION" : 4,
+                        "NORMAL" : 5,
+                        "TEXCOORD_0" : 6
+                    },
+                    "indices" : 7,
+                    "material" : 1
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        },
+        {
+            "sampler" : 0,
+            "source" : 1
+        },
+        {
+            "sampler" : 0,
+            "source" : 0
+        },
+        {
+            "sampler" : 0,
+            "source" : 1
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "normalSlow",
+            "uri" : "normalSlow.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "difusseSlow",
+            "uri" : "difusseSlow.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 11432,
+            "max" : [
+                7.401543140411377,
+                13.345688819885254,
+                3.549689531326294
+            ],
+            "min" : [
+                -7.789139270782471,
+                -3.1020621804600523e-07,
+                -2.850494384765625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 11432,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 11432,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 11643,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 472,
+            "max" : [
+                7.401543140411377,
+                13.345688819885254,
+                3.549689531326294
+            ],
+            "min" : [
+                -7.789139270782471,
+                -3.1020621804600523e-07,
+                -2.850494384765625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 472,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 472,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5123,
+            "count" : 735,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 137184,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 137184,
+            "byteOffset" : 137184
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 91456,
+            "byteOffset" : 274368
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 23286,
+            "byteOffset" : 365824
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 5664,
+            "byteOffset" : 389112
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 5664,
+            "byteOffset" : 394776
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3776,
+            "byteOffset" : 400440
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1470,
+            "byteOffset" : 404216
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 405688,
+            "uri" : "bakedLow.bin"
+        }
+    ]
+}
