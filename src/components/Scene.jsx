@@ -120,6 +120,7 @@ const Scene = () => {
         './models/bakedMed/bakedMed.gltf',
         (gltf) => {
             pieza = gltf.scene
+            pieza.scale.z = -1
             scene.add(pieza)
             // dat.gui controls
             gui.add(pieza.position,'x', -20, 20, 0.0001)
