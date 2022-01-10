@@ -120,8 +120,9 @@ const Scene = () => {
         './models/bakedMed/bakedMed.gltf',
         (gltf) => {
             pieza = gltf.scene
-            pieza.scale.z = -1
+            // pieza.scale.z = -1
             pieza.scale.x = -1
+            pieza.rotation.y = -Math.PI
             scene.add(pieza)
             // dat.gui controls
             gui.add(pieza.position,'x', -20, 20, 0.0001)
@@ -147,7 +148,7 @@ const Scene = () => {
                   pieza.scale.set(
                     -(piezaAux.size),
                     piezaAux.size,
-                    -(piezaAux.size)
+                    piezaAux.size
                   )
                  }else{
                   pieza.scale.set(
@@ -167,12 +168,12 @@ const Scene = () => {
                  pieza.scale.set(
                    (piezaAux.size * 1), 
                    piezaAux.size,
-                   (piezaAux.size * 1))
+                   piezaAux.size)
                  }else{
                   pieza.scale.set(
                     (piezaAux.size * -1), 
                     piezaAux.size,
-                    (piezaAux.size * -1))
+                    piezaAux.size)
                  }
                })
         },
