@@ -158,6 +158,7 @@ const Scene = () => {
                  }
                  
             })
+            // Checkbox Mirror
             gui.add(piezaAux,'mirror')
                .onChange(()=> {
                 //  console.log("mirror")
