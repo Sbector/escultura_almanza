@@ -121,6 +121,7 @@ const Scene = () => {
         (gltf) => {
             pieza = gltf.scene
             pieza.scale.z = -1
+            pieza.scale.x = -1
             scene.add(pieza)
             // dat.gui controls
             gui.add(pieza.position,'x', -20, 20, 0.0001)
@@ -130,20 +131,48 @@ const Scene = () => {
             gui.add(pieza.rotation,'y', -Math.PI, Math.PI, Math.PI * 0.0001)
                .name('Rotación')
 
+            // Objeto auxiliar
             const piezaAux = {
-              size: 1
+              size: 1,
+              mirror: false
             }
+            // Controles de escala
             gui.add(piezaAux,'size', {
               'Original': 1,
               'Actualizado': 0.671642
             })
                .name('versión')
                .onChange(()=> {
+                 if(!piezaAux.mirror){
+                  pieza.scale.set(
+                    -(piezaAux.size),
+                    piezaAux.size,
+                    -(piezaAux.size)
+                  )
+                 }else{
+                  pieza.scale.set(
+                    piezaAux.size,
+                    piezaAux.size,
+                    piezaAux.size
+                  )
+                 }
+                 
+            })
+            gui.add(piezaAux,'mirror')
+               .onChange(()=> {
+                //  console.log("mirror")
+                //  console.log(piezaAux.mirror)
+                 if (piezaAux.mirror){
                  pieza.scale.set(
+                   (piezaAux.size * 1), 
                    piezaAux.size,
-                   piezaAux.size,
-                   piezaAux.size
-                 )
+                   (piezaAux.size * 1))
+                 }else{
+                  pieza.scale.set(
+                    (piezaAux.size * -1), 
+                    piezaAux.size,
+                    (piezaAux.size * -1))
+                 }
                })
         },
         () => {
