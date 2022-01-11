@@ -117,7 +117,7 @@ const Scene = () => {
     const gltfLoader = new GLTFLoader()
     let pieza
     gltfLoader.load(
-        './models/bakedMed/bakedMed.gltf',
+        './models/bakedMedAjustes/textureBaking(ajustes-10-ene-22).gltf',
         (gltf) => {
             pieza = gltf.scene
             // pieza.scale.z = -1
