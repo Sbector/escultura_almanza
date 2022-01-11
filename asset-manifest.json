@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/escultura_almanza/static/css/main.e6c13ad2.css",
-    "main.js": "/escultura_almanza/static/js/main.054146e8.js",
+    "main.js": "/escultura_almanza/static/js/main.256b79b3.js",
     "static/js/787.2512bad3.chunk.js": "/escultura_almanza/static/js/787.2512bad3.chunk.js",
     "index.html": "/escultura_almanza/index.html",
     "main.e6c13ad2.css.map": "/escultura_almanza/static/css/main.e6c13ad2.css.map",
-    "main.054146e8.js.map": "/escultura_almanza/static/js/main.054146e8.js.map",
+    "main.256b79b3.js.map": "/escultura_almanza/static/js/main.256b79b3.js.map",
     "787.2512bad3.chunk.js.map": "/escultura_almanza/static/js/787.2512bad3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.054146e8.js"
+    "static/js/main.256b79b3.js"
   ]
 }

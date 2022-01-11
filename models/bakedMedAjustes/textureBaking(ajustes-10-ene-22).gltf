@@ -142,7 +142,7 @@
             "count" : 11432,
             "max" : [
                 7.401543140411377,
-                13.345688819885254,
+                13.407658576965332,
                 3.549689531326294
             ],
             "min" : [
@@ -173,10 +173,10 @@
         {
             "bufferView" : 4,
             "componentType" : 5126,
-            "count" : 472,
+            "count" : 490,
             "max" : [
                 7.401543140411377,
-                13.345688819885254,
+                13.407658576965332,
                 3.549689531326294
             ],
             "min" : [
@@ -189,13 +189,13 @@
         {
             "bufferView" : 5,
             "componentType" : 5126,
-            "count" : 472,
+            "count" : 490,
             "type" : "VEC3"
         },
         {
             "bufferView" : 6,
             "componentType" : 5126,
-            "count" : 472,
+            "count" : 490,
             "type" : "VEC2"
         },
         {
@@ -228,23 +228,23 @@
         },
         {
             "buffer" : 0,
-            "byteLength" : 5664,
+            "byteLength" : 5880,
             "byteOffset" : 389112
         },
         {
             "buffer" : 0,
-            "byteLength" : 5664,
-            "byteOffset" : 394776
+            "byteLength" : 5880,
+            "byteOffset" : 394992
         },
         {
             "buffer" : 0,
-            "byteLength" : 3776,
-            "byteOffset" : 400440
+            "byteLength" : 3920,
+            "byteOffset" : 400872
         },
         {
             "buffer" : 0,
             "byteLength" : 1470,
-            "byteOffset" : 404216
+            "byteOffset" : 404792
         }
     ],
     "samplers" : [
@@ -255,8 +255,8 @@
     ],
     "buffers" : [
         {
-            "byteLength" : 405688,
-            "uri" : "bakedMed.bin"
+            "byteLength" : 406264,
+            "uri" : "textureBaking(ajustes-10-ene-22).bin"
         }
     ]
 }
