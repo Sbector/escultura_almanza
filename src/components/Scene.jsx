@@ -56,7 +56,9 @@ const Scene = () => {
     //Textura de referencia humana
     const refTexture = textureLoader.load('./textures/human-silhouette-walking-4.png')
     //Textura de envMap
-    const sphereEnv = textureLoader.load('./textures/envMap.jpg')
+    // const sphereEnv = textureLoader.load('./textures/envMap.jpg')
+    //Textura de envMap
+    // const scaleMap = textureLoader.load('./textures/escala.jpg')
     
 
     //  contextTextureFar.minFilter = THREE.NearestFilter
@@ -217,7 +219,7 @@ const Scene = () => {
 
 
     // referencia
-    const planeRef = new THREE.PlaneGeometry(.89,1.8)
+    const planeRef = new THREE.PlaneGeometry(.84,1.7)
     const ref = new THREE.Mesh(planeRef,
       new THREE.MeshStandardMaterial({
         map: refTexture,
@@ -226,23 +228,37 @@ const Scene = () => {
         roughness: .1
       })
     )
-    ref.position.set(10.7,1.8/2,-5.1)
+    ref.position.set(10.7,1.7/2,-5.1)
     scene.add(ref)
     gui.add(ref.position,'x',-15,15,0.1)
        .name('ReferenciaPosX')
     gui.add(ref.position,'z',-15,15,0.1)
        .name('ReferenciaPosY')
 
+
+    /**
+     * revisión de escala
+     */
+    // const scale = new THREE.Mesh(
+    //   new THREE.PlaneGeometry(.84,13.4),
+    //   new THREE.MeshBasicMaterial({
+    //     map: scaleMap
+    //   })
+    // )
+    // scale.position.set(-3.7, 13.4/2, -1.5)
+    // scale.rotation.y = Math.PI
+    // scene.add(scale)
+
     /**
      * Fake EnvMap
      */
-    const sphereGeometry = new THREE.SphereGeometry (180,16,8)
-    const sphereMaterial = new THREE.MeshBasicMaterial({
-      map: sphereEnv,
-      side: THREE.BackSide
-    })
-    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
-    scene.add(sphere)
+    // const sphereGeometry = new THREE.SphereGeometry (180,16,8)
+    // const sphereMaterial = new THREE.MeshBasicMaterial({
+    //   map: sphereEnv,
+    //   side: THREE.BackSide
+    // })
+    // const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
+    // scene.add(sphere)
     
     /**
      * Iluminación
